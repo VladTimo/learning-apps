@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: https://github.com/VladTimo/learning-apps  # Git repository URL containing the Helm chart
     targetRevision: chore/add_golearning_app  # Branch or tag (e.g., "main" or "v1.0.0")
-    path: hello-world-app  # The path to your Helm chart in the repository
+    path: hello-world-app/hello-world-app  # The path to your Helm chart in the repository
     helm:
       valueFiles:
         - values.yaml  # You can specify the values.yaml or any custom overrides here
