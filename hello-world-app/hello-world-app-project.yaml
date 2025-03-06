@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: hello-world-app
+  namespace: argocd  # Ensure this is the correct ArgoCD namespace
+spec:
+  description: "Project for hello world app"
+  destinations:
+    - namespace: hello-world-app
+      server: https://kubernetes.docker.internal:6443  # Kubernetes cluster API URL
+  sourceRepos:
+    - "*"
+  clusterResourceBlacklist:
+    - group: "*"
+      kind: "*"

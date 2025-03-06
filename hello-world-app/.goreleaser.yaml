@@ -1,0 +1,26 @@
+project_name: hello-world-app
+
+builds:
+  - id: hello-world
+    main: ./main.go
+    binary: hello
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+
+dockers:
+  - image_templates:
+      - "hello-world-app:latest"  # The image name and tag
+      - "hello-world-app:{{ .Tag }}"
+    goos: linux
+    goarch: amd64
+    dockerfile: Dockerfile
+
+release:
+  github:
+    owner: your-github-username
+    name: hello-world-app

@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hello-world-app
+  namespace: argocd  # Ensure this is the correct ArgoCD namespace
+spec:
+  destination:
+    server: https://kubernetes.docker.internal:6443 # The Kubernetes cluster API URL (use the default)
+    namespace: hello-world-app  # The target namespace for deployment
+  project: hello-world-app  # Use the default project, or define a custom one
+  source:
+    repoURL: https://github.com/VladTimo/learning-apps  # Git repository URL containing the Helm chart
+    targetRevision: chore/add_golearning_app  # Branch or tag (e.g., "main" or "v1.0.0")
+    path: hello-world-app/hello-world-app  # The path to your Helm chart in the repository
+    helm:
+      valueFiles:
+        - values.yaml  # You can specify the values.yaml or any custom overrides here
+  syncPolicy:
+    automated:
+      prune: true  # Automatically prune resources that are no longer in the manifest
+      selfHeal: true  # Automatically heal resources if they diverge from the desired state
